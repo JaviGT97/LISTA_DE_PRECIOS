@@ -4,18 +4,20 @@ body {
     padding: 0;
     background-color: #f8f9fa;
     color: #343a40;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
     text-transform: uppercase;
 }
 
-header {
+header, footer {
     background-color: #343a40;
     color: #ffffff;
     padding: 20px;
     text-align: center;
     border-bottom: 3px solid #ffc107;
+}
+
+header img.logo {
+    max-width: 50px;
+    margin-bottom: 10px;
 }
 
 header h1 {
@@ -116,11 +118,11 @@ footer p {
     }
 
     header h1 {
-        font-size: 2em;
+        font-size: 1.5em;
     }
 
     header h2 {
-        font-size: 1.2em;
+        font-size: 1em;
     }
 
     table, th, td {
@@ -133,5 +135,13 @@ footer p {
 
     li {
         padding: 0.4rem;
+    }
+
+    header, footer {
+        padding: 10px;
+    }
+
+    header h1, header h2, footer p {
+        font-size: 1.2em;
     }
 }
