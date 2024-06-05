@@ -31,8 +31,7 @@ header h2 {
     font-weight: 300;
 }
 
-main {
-    padding: 20px;
+main {
     max-width: 1200px;
     margin: 20px auto;
     background-color: #ffffff;
