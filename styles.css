@@ -1,9 +1,11 @@
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa;
-    color: #343a40;
+    background-color: #f9f9f9;
+    background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+    /* Fondo sutil */
+    color: #333;
     text-transform: uppercase;
     display: flex;
     flex-direction: column;
@@ -15,40 +17,41 @@ body {
 
 header,
 footer {
-    background-color: #343a40;
-    color: #ffffff;
+    background-color: #2c3e50;
+    color: #ecf0f1;
     padding: 20px;
     text-align: center;
-    border-bottom: 3px solid #ffc107;
+    border-bottom: 3px solid #e74c3c;
     width: 100%;
     box-sizing: border-box;
     flex-shrink: 0;
-}
-
-header img.logo {
-    max-width: 50px;
-    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
 }
 
 header h1 {
     margin: 0;
     font-size: 2.5em;
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 2px;
 }
 
 header h2 {
     margin: 0;
     font-size: 1.5em;
     font-weight: 300;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 1px;
 }
 
 main {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 20px auto;
     background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
     width: 100%;
-    padding: 20px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -67,40 +70,48 @@ section {
 
 section h1 {
     font-size: 2em;
-    color: #343a40;
-    background-color: #ffc107;
-    padding: 10px;
-    border-radius: 5px;
+    color: #2c3e50;
+    background-color: #e74c3c;
+    padding: 15px;
+    border-radius: 8px;
     display: inline-block;
     margin-bottom: 20px;
     width: 100%;
     text-align: center;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 th,
 td {
     border: 1px solid #ddd;
-    padding: 12px 15px;
+    padding: 15px;
     text-align: left;
 }
 
 th {
-    background-color: #343a40;
+    background-color: #2c3e50;
     color: white;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 1px;
 }
 
 td {
-    background-color: #f8f9fa;
+    background-color: #f9f9f9;
 }
 
 tr:nth-child(even) td {
-    background-color: #f1f1f1;
+    background-color: #ecf0f1;
 }
 
 ul {
@@ -109,31 +120,32 @@ ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 15px;
+    gap: 20px;
 }
 
 li {
     background-color: #fff;
-    padding: 15px;
+    padding: 20px;
     border: 1px solid #ddd;
     flex: 1 1 200px;
     max-width: 250px;
     text-align: center;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 li:hover {
     transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 footer {
-    background-color: #343a40;
-    color: #ffffff;
+    background-color: #2c3e50;
+    color: #ecf0f1;
     padding: 20px;
     text-align: center;
-    border-top: 3px solid #ffc107;
+    border-top: 3px solid #e74c3c;
     width: 100%;
     box-sizing: border-box;
     margin-top: auto;
@@ -142,6 +154,8 @@ footer {
 footer p {
     margin: 0;
     font-size: 1.2em;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 1px;
 }
 
 @media (max-width: 768px) {
@@ -150,11 +164,11 @@ footer p {
     }
 
     header h1 {
-        font-size: 1.5em;
+        font-size: 1.8em;
     }
 
     header h2 {
-        font-size: 1em;
+        font-size: 1.2em;
     }
 
     table,
@@ -168,13 +182,13 @@ footer p {
     }
 
     li {
-        padding: 0.8rem;
+        padding: 15px;
         flex: 1 1 100%;
     }
 
     header,
     footer {
-        padding: 10px;
+        padding: 15px;
     }
 
     header h1,
