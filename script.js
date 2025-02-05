@@ -9,7 +9,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Menú de navegación responsivo
 const menuIcon = document.querySelector('.menu-icon');
 const nav = document.querySelector('.nav');
 
@@ -17,7 +16,6 @@ menuIcon.addEventListener('click', () => {
     nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
 });
 
-// Efecto de animación al hacer scroll
 const hiddenElements = document.querySelectorAll('.hidden');
 
 const observer = new IntersectionObserver((entries) => {

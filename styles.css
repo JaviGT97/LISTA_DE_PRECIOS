@@ -237,7 +237,6 @@ footer p {
     }
 }
 
-/* Estilos para la animación al hacer scroll */
 .hidden {
     opacity: 0;
     transform: translateY(20px);
@@ -247,4 +246,12 @@ footer p {
 .visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+.nav a:visited {
+    color: #ecf0f1;
+}
+
+.nav a:active {
+    color: #ecf0f1;
 }
