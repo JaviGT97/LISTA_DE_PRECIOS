@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bar La Peña - Menú</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b6b, #ffa500);
+            border-radius: 2px;
+        }
+
+        .restaurant-name {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .restaurant-subtitle {
+            color: #666;
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .menu-section {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #ffa500, #4ecdc4);
+            border-radius: 15px 15px 0 0;
+        }
+
+        .menu-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 25px;
+            text-align: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .section-icon {
+            color: #667eea;
+            font-size: 1.5rem;
+        }
+
+        .subsection {
+            margin-bottom: 30px;
+        }
+
+        .subsection:last-child {
+            margin-bottom: 0;
+        }
+
+        .subsection-title {
+            font-size: 1.3rem;
+            color: #667eea;
+            margin-bottom: 15px;
+            font-weight: 500;
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .subsection-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, #ff6b6b, #ffa500);
+            border-radius: 1px;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-item:hover {
+            background: rgba(102, 126, 234, 0.05);
+            padding-left: 10px;
+            border-radius: 8px;
+        }
+
+        .item-name {
+            font-weight: 500;
+            color: #333;
+            flex: 1;
+            position: relative;
+        }
+
+        .item-description {
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+            margin-top: 2px;
+        }
+
+        .item-price {
+            font-weight: 700;
+            color: #667eea;
+            font-size: 1.1rem;
+            min-width: 60px;
+            text-align: right;
+            position: relative;
+        }
+
+        .item-price::before {
+            content: '';
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #667eea);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-radius: 15px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .footer-text {
+            font-size: 1.3rem;
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .footer-subtitle {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .print-btn {
+            display: none;
+        }
+
+        .decorative-element {
+            text-align: center;
+            margin: 30px 0;
+            color: #667eea;
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            .restaurant-name {
+                font-size: 2.5rem;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .menu-section {
+                padding: 20px;
+            }
+
+            .print-btn {
+                display: none !important;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                background: white;
+                box-shadow: none;
+                padding: 20px;
+                margin: 0;
+                border-radius: 0;
+                max-width: none;
+            }
+
+            .print-btn {
+                display: none !important;
+            }
+
+            .menu-section {
+                background: white;
+                box-shadow: none;
+                border: 1px solid #ddd;
+                break-inside: avoid;
+                margin-bottom: 25px;
+            }
+
+            .menu-section::before {
+                background: #667eea;
+            }
+
+            .header::after {
+                background: #667eea;
+            }
+
+            .subsection-title::after {
+                background: #667eea;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="restaurant-name">Bar La Peña</h1>
+            <p class="restaurant-subtitle">Cocina Tradicional</p>
+        </div>
+
+        <div class="menu-grid">
+            <div class="menu-section">
+                <h2 class="section-title">
+                    <i class="fas fa-star section-icon"></i>
+                    Sugerencias
+                    <i class="fas fa-star section-icon"></i>
+                </h2>
+                <div class="menu-item">
+                    <div class="item-name">
+                        Lomito de Cerdo
+                        <div class="item-description">Tierno lomo de cerdo a la plancha</div>
+                    </div>
+                    <span class="item-price">2,80€</span>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">
+                        Lomito de Pollo
+                        <div class="item-description">Pechuga de pollo jugosa</div>
+                    </div>
+                    <span class="item-price">2,80€</span>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">
+                        Pinchito de Pollo
+                        <div class="item-description">Brocheta de pollo marinado</div>
+                    </div>
+                    <span class="item-price">2,80€</span>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">
+                        Serranito de Cerdo
+                        <div class="item-description">Bocadillo típico andaluz</div>
+                    </div>
+                    <span class="item-price">6,50€</span>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">
+                        Serranito de Pollo
+                        <div class="item-description">Versión con pollo</div>
+                    </div>
+                    <span class="item-price">6,50€</span>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">
+                        Pechuga de Pollo
+                        <div class="item-description">A la plancha con guarnición</div>
+                    </div>
+                    <span class="item-price">6,00€</span>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">
+                        Churrasco
+                        <div class="item-description">Carne a la brasa</div>
+                    </div>
+                    <span class="item-price">7,00€</span>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">
+                        Pez Espada
+                        <div class="item-description">Fresco del día</div>
+                    </div>
+                    <span class="item-price">9,00€</span>
+                </div>
+            </div>
+
+            <div class="menu-section">
+                <h2 class="section-title">
+                    <i class="fas fa-utensils section-icon"></i>
+                    Tapas
+                </h2>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">Tapa</h3>
+                    <div class="menu-item">
+                        <div class="item-name">
+                            Bacalao con Aceite
+                            <div class="item-description">Especialidad de la casa</div>
+                        </div>
+                        <span class="item-price">2,80€</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">
+                            Chorizo
+                            <div class="item-description">Casero picante</div>
+                        </div>
+                        <span class="item-price">2,80€</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">
+                            Ensaladilla
+                            <div class="item-description">Rusa casera</div>
+                        </div>
+                        <span class="item-price">2,80€</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">
+                            Salchichón
+                            <div class="item-description">Embutido tradicional</div>
+                        </div>
+                        <span class="item-price">2,80€</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">
+                            Langostinos
+                            <div class="item-description">Cocidos al punto</div>
+                        </div>
+                        <span class="item-price">2,80€</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">
+                            Jamón
+                            <div class="item-description">Ibérico de bellota</div>
+                        </div>
+                        <span class="item-price">2,80€</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">
+                            Queso
+                            <div class="item-description">Curado manchego</div>
+                        </div>
+                        <span class="item-price">2,80€</span>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">Media Ración</h3>
+                    <div class="menu-item">
+                        <div class="item-name">Bacalao con Aceite</div>
+                        <span class="item-price">8,00€</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">Chorizo</div>
+                        <span class="item-price">8,00€</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">Ensaladilla</div>
+                        <span class="item-price">8,00€</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">Salchichón</div>
+                        <span class="item-price">8,00€</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">Langostinos</div>
+                        <span class="item-price">8,00€</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">Jamón</div>
+                        <span class="item-price">8,00€</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">Queso</div>
+                        <span class="item-price">8,00€</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">
+                            Calamares
+                            <div class="item-description">Frescos del día</div>
+                        </div>
+                        <span class="item-price">8,00€</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">
+                            Chipirones Plancha
+                            <div class="item-description">A la plancha</div>
+                        </div>
+                        <span class="item-price">8,00€</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">
+                            Chipirones Fritos
+                            <div class="item-description">Fritos tradicionales</div>
+                        </div>
+                        <span class="item-price">8,00€</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">
+                            Adobos
+                            <div class="item-description">Cazón en adobo tradicional</div>
+                        </div>
+                        <span class="item-price">8,00€</span>
+                    </div>
+                </div>
+
+                <div class="menu-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-wine-glass section-icon"></i>
+                        Bebidas
+                    </h2>
+
+                    <div class="subsection">
+                        <h3 class="subsection-title">Refrescos & Agua</h3>
+                        <div class="menu-item">
+                            <div class="item-name">
+                                Coca Cola
+                                <div class="item-description">Lata 33cl</div>
+                            </div>
+                            <span class="item-price">1,50€</span>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-name">
+                                Fanta Naranja
+                                <div class="item-description">Lata 33cl</div>
+                            </div>
+                            <span class="item-price">1,50€</span>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-name">
+                                Refrescos Variados
+                                <div class="item-description">Lata 33cl</div>
+                            </div>
+                            <span class="item-price">1,50€</span>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-name">
+                                Agua Mineral
+                                <div class="item-description">Botella 0.5L</div>
+                            </div>
+                            <span class="item-price">0,80€</span>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-name">
+                                Agua Mineral
+                                <div class="item-description">Botella 1L</div>
+                            </div>
+                            <span class="item-price">1,20€</span>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-name">
+                                Zumos Naturales
+                                <div class="item-description">Vaso</div>
+                            </div>
+                            <span class="item-price">1,50€</span>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-name">
+                                Batidos
+                                <div class="item-description">Varios sabores</div>
+                            </div>
+                            <span class="item-price">1,50€</span>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-name">
+                                Cola Cao
+                                <div class="item-description">Caliente</div>
+                            </div>
+                            <span class="item-price">1,50€</span>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-name">
+                                Mosto
+                                <div class="item-description">Vaso</div>
+                            </div>
+                            <span class="item-price">0,80€</span>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-name">
+                                Coca Cola
+                                <div class="item-description">Botella 2L</div>
+                            </div>
+                            <span class="item-price">2,50€</span>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-name">
+                                Fanta
+                                <div class="item-description">Botella 2L</div>
+                            </div>
+                            <span class="item-price">2,50€</span>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3 class="subsection-title">Cervezas</h3>
+                        <div class="menu-item">
+                            <div class="item-name">
+                                Cerveza Cruzcampo
+                                <div class="item-description">Caña / Botellín</div>
+                            </div>
+                            <span class="item-price">1,50€</span>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-name">
+                                Botellines
+                                <div class="item-description">Cruzcampo</div>
+                            </div>
+                            <span class="item-price">1,50€</span>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-name">
+                                Litronas
+                                <div class="item-description">1L</div>
+                            </div>
+                            <span class="item-price">2,50€</span>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3 class="subsection-title">Vinos</h3>
+                        <div class="menu-item">
+                            <div class="item-name">
+                                Vino Tinto
+                                <div class="item-description">Copa</div>
+                            </div>
+                            <span class="item-price">1,50€</span>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-name">
+                                Vino Rioja
+                                <div class="item-description">Copa</div>
+                            </div>
+                            <span class="item-price">1,50€</span>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3 class="subsection-title">Café & Infusiones</h3>
+                        <div class="menu-item">
+                            <div class="item-name">
+                                Café Solo
+                            </div>
+                            <span class="item-price">1,30€</span>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-name">
+                                Café con Leche
+                            </div>
+                            <span class="item-price">1,30€</span>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-name">
+                                Infusiones
+                                <div class="item-description">Variadas</div>
+                            </div>
+                            <span class="item-price">1,30€</span>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3 class="subsection-title">Licores & Combinados</h3>
+                        <div class="menu-item">
+                            <div class="item-name">
+                                Copas Anís
+                            </div>
+                            <span class="item-price">1,40€</span>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-name">
+                                Copas Coñac
+                            </div>
+                            <span class="item-price">1,40€</span>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-name">
+                                Chapita Whisky
+                            </div>
+                            <span class="item-price">2,50€</span>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-name">
+                                Copas Martini
+                            </div>
+                            <span class="item-price">2,50€</span>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-name">
+                                Cubalibre Ron
+                                <div class="item-description">Con refresco</div>
+                            </div>
+                            <span class="item-price">5,00€</span>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-name">
+                                Cubalibre Ginebra
+                                <div class="item-description">Con tónica</div>
+                            </div>
+                            <span class="item-price">5,00€</span>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-name">
+                                Cubalibre Whisky
+                                <div class="item-description">Con refresco</div>
+                            </div>
+                            <span class="item-price">5,00€</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="decorative-element">
+                <i class="fas fa-utensils"></i> ★ ★ ★ <i class="fas fa-wine-glass"></i>
+            </div>
+
+            <div class="footer">
+                <p class="footer-text">Gracias por su visita</p>
+                <p class="footer-subtitle">Esperamos volver a verle pronto</p>
+                <p class="footer-subtitle">Tlf: 954 75 50 34</p>
+            </div>
+        </div>
+
+        <script>
+            // Añadir efectos de hover dinámicos
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.addEventListener('mouseenter', function () {
+                    this.style.transform = 'translateX(5px)';
+                });
+
+                item.addEventListener('mouseleave', function () {
+                    this.style.transform = 'translateX(0)';
+                });
+            });
+
+            // Animación de aparición gradual para los elementos del menú
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.menu-section').forEach((section, index) => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+                observer.observe(section);
+            });
+        </script>
+</body>
+
+</html>
